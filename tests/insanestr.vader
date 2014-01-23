@@ -1,0 +1,37 @@
+Given (simple string):
+  log.info("xd");
+Execute:
+  call Insane_unescape_str()
+Expect:
+  log.info("xd"); //	xd
+Given (escaped double qoute):
+  log.info("\"")
+Execute:
+  call Insane_unescape_str()
+Expect:
+  log.info("\"") //	"
+Given (only backslash):
+  "\\"
+Execute:
+  call Insane_unescape_str()
+Expect:
+  "\\" //	\
+Given (multiple backslashes):
+  "\"\\\\";
+Execute:
+  call Insane_unescape_str()
+Expect:
+  "\"\\\\"; //	"\\
+Given (String with unicode escape):
+  foo("\u0042sample");
+Execute:
+  call Insane_unescape_str()
+Expect:
+  foo("\u0042sample"); //	\u0042sample
+Given (malformed string):
+  "\u00ea\\\\\"
+Execute:
+  call Insane_unescape_str()
+Expect:
+  "\u00ea\\\\\"
+
