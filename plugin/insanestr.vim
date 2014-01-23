@@ -29,6 +29,6 @@ fun! Insane_reescape_str()
 endfunction
 
 fun! Insane_escape_str(raw_str) "{{{
-  let raw_str = substitute(a:raw_str, '\v\\(["u])@!', '\\\\', 'g')
+  let raw_str = substitute(a:raw_str, '\v\\(["nu])@!', '\\\\', 'g')
   return substitute(raw_str, '\v"', '\\&', 'g')
 endfunction "}}}

@@ -34,4 +34,42 @@ Execute:
   call Insane_unescape_str()
 Expect:
   "\u00ea\\\\\"
-
+Given (multiple backslashes):
+  "\\\\\\\\\\"
+Expect:
+  "\\\\\\\\\\" //	\\\\\
+Execute:
+  call Insane_unescape_str()
+Given:
+  new RegExp("\\|[^|]*\\|");
+Execute:
+  call Insane_unescape_str()
+Expect:
+  new RegExp("\\|[^|]*\\|"); //	\|[^|]*\|
+Given (reescape unicode):
+  "\u00e1" //	\u00e1
+Execute:
+  call Insane_reescape_str()
+Expect:
+  "\u00e1"
+Given (reescape carriage return):
+  "\\\n" //	\\n
+Execute:
+  call Insane_reescape_str()
+Expect:
+  "\\\n"
+Given (reescape string delimiter):
+  "\"\\foo" //	"\foo
+Execute:
+  call Insane_reescape_str()
+Expect:
+  "\"\\foo"
+Given (reescape with many chars):
+  System.out.println("_"); //	kk:":";";_
+Execute:
+  call Insane_reescape_str()
+Expect:
+  System.out.println("kk:\":\";\";_");
+#Given:
+#  new RegExp("\|[^|]*\|"); //	\|[^|]*\|
+#Expect:
