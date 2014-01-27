@@ -70,3 +70,15 @@ Execute:
   call Insane_reescape_str()
 Expect:
   System.out.println("kk:\":\";\";_");
+Given (testing tab):
+  "\\s\t"
+Execute:
+  Insaneunescape
+Expect:
+  "\\s\t" //	\s\t
+Given (testing inverse tab reescape):
+  "\\s\t" //	\s\t
+Execute:
+  Insanereescape
+Expect:
+  "\\s\t"

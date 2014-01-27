@@ -13,9 +13,8 @@ endfunction "}}}
 fun! Insane_reescape_str()
   let a_line = getline(line('.'))
 
-  "Using replace from getline could create undesirable effects
-  "for now using match and matchend with slicing represents a
-  "better approach
+  "Using replace from getline('.') could cause undesirable effects
+  "using match and matchend with slicing seems to be a better approach
 
   let first_index = match(a_line, s:expr) - 1
   let last_index = matchend(a_line, s:expr)
@@ -29,6 +28,9 @@ fun! Insane_reescape_str()
 endfunction
 
 fun! Insane_escape_str(raw_str) "{{{
-  let raw_str = substitute(a:raw_str, '\v\\(["nu])@!', '\\\\', 'g')
+  let raw_str = substitute(a:raw_str, '\v\\(["tnu])@!', '\\\\', 'g')
   return substitute(raw_str, '\v"', '\\&', 'g')
 endfunction "}}}
+
+command! Insaneunescape call Insane_unescape_str()
+command! Insanereescape call Insane_reescape_str()
