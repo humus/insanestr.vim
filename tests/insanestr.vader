@@ -36,10 +36,10 @@ Expect:
   "\u00ea\\\\\"
 Given (multiple backslashes):
   "\\\\\\\\\\"
-Expect:
-  "\\\\\\\\\\" //	\\\\\
 Execute:
   call Insane_unescape_str()
+Expect:
+  "\\\\\\\\\\" //	\\\\\
 Given:
   new RegExp("\\|[^|]*\\|");
 Execute:
