@@ -8,6 +8,8 @@ fun! Insane_unescape_str() "{{{
   let unescaped_str = substitute(escaped_str, '\v\\(")@=', '', 'g')
   let unescaped_str = substitute(unescaped_str, '\v\\\\', '\\', 'g')
   call setline(line('.'), a_line . ' //	' . unescaped_str)
+  let pos = getpos('.')
+  call setpos('.', [pos[0], pos[1], len(getline(pos[1])), 0])
 endfunction "}}}
 
 fun! Insane_reescape_str()
